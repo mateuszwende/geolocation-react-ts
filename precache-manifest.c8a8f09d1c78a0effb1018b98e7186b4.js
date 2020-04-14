@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6fed789fb7736a8ce4c80557ce3da5fb",
+    "revision": "8056bac48ce9bfee51b322ae96f35e10",
     "url": "/geolocation-react-ts/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/geolocation-react-ts/static/css/2.b4a16772.chunk.css"
   },
   {
-    "revision": "9ff86b36de23ace6a2e3",
+    "revision": "b2f1a91916145994e188",
     "url": "/geolocation-react-ts/static/css/main.48f2b0f7.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/geolocation-react-ts/static/js/2.780b5211.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9ff86b36de23ace6a2e3",
-    "url": "/geolocation-react-ts/static/js/main.00b9bf8e.chunk.js"
+    "revision": "b2f1a91916145994e188",
+    "url": "/geolocation-react-ts/static/js/main.c778c19f.chunk.js"
   },
   {
     "revision": "f58874e9e4feb5ea0e91",
