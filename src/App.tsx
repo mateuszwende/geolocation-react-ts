@@ -131,12 +131,14 @@ const App: React.FC = () => {
           </FormGroup>
           <DataView
             title="Starting position"
+            titleColor="red"
             latitude={geoLocation.data[0].latitude}
             longitude={geoLocation.data[0].longitude}
             measurementTime={geoLocation.data[0].measurementTime}
           />
           <DataView
             title="Current position"
+            titleColor="blue"
             latitude={geoLocation.data[geoLocation.data.length - 1].latitude}
             longitude={geoLocation.data[geoLocation.data.length - 1].longitude}
             measurementTime={
@@ -152,7 +154,11 @@ const App: React.FC = () => {
             {rawDataView ? <>Hide raw data</> : <>Show raw data</>}
           </Button>
           <div className="vertical-spacing">
-            {rawDataView ? JSON.stringify(geoLocation.data) : null}
+            {rawDataView ? (
+              <Typography style={{ overflowWrap: "break-word" }}>
+                {JSON.stringify(geoLocation.data)}
+              </Typography>
+            ) : null}
           </div>
         </>
       ) : null}

@@ -4,6 +4,7 @@ import { format } from "date-fns";
 
 type DataViewPropsT = {
   title: string;
+  titleColor: string;
   latitude: number;
   longitude: number;
   measurementTime: Date;
@@ -11,10 +12,16 @@ type DataViewPropsT = {
 
 export default class DataView extends PureComponent<DataViewPropsT> {
   render() {
-    const { title, latitude, longitude, measurementTime } = this.props;
+    const {
+      title,
+      titleColor,
+      latitude,
+      longitude,
+      measurementTime,
+    } = this.props;
     return (
       <div className="vertical-spacing text-align-left">
-        <Typography variant="body1" component="p">
+        <Typography variant="body1" component="p" style={{ color: titleColor }}>
           {title}
         </Typography>
         <Typography variant="body2" component="p">
