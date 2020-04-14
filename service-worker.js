@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/geolocation-react-ts/precache-manifest.c8a8f09d1c78a0effb1018b98e7186b4.js"
+  "/geolocation-react-ts/precache-manifest.94eb1a846110f5b4f09541a50518d6e9.js"
 );
 
 self.addEventListener('message', (event) => {
