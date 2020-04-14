@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/mateuszwende/geolocation-react-ts/static/css/main.48f2b0f7.chunk.css",
+    "main.js": "/mateuszwende/geolocation-react-ts/static/js/main.ff54670f.chunk.js",
+    "main.js.map": "/mateuszwende/geolocation-react-ts/static/js/main.ff54670f.chunk.js.map",
+    "runtime-main.js": "/mateuszwende/geolocation-react-ts/static/js/runtime-main.94a3647a.js",
+    "runtime-main.js.map": "/mateuszwende/geolocation-react-ts/static/js/runtime-main.94a3647a.js.map",
+    "static/css/2.b4a16772.chunk.css": "/mateuszwende/geolocation-react-ts/static/css/2.b4a16772.chunk.css",
+    "static/js/2.2405d5b4.chunk.js": "/mateuszwende/geolocation-react-ts/static/js/2.2405d5b4.chunk.js",
+    "static/js/2.2405d5b4.chunk.js.map": "/mateuszwende/geolocation-react-ts/static/js/2.2405d5b4.chunk.js.map",
+    "index.html": "/mateuszwende/geolocation-react-ts/index.html",
+    "precache-manifest.c7ad3e0d38704c8fbd5f0e1ef349eae3.js": "/mateuszwende/geolocation-react-ts/precache-manifest.c7ad3e0d38704c8fbd5f0e1ef349eae3.js",
+    "service-worker.js": "/mateuszwende/geolocation-react-ts/service-worker.js",
+    "static/css/2.b4a16772.chunk.css.map": "/mateuszwende/geolocation-react-ts/static/css/2.b4a16772.chunk.css.map",
+    "static/css/main.48f2b0f7.chunk.css.map": "/mateuszwende/geolocation-react-ts/static/css/main.48f2b0f7.chunk.css.map",
+    "static/js/2.2405d5b4.chunk.js.LICENSE.txt": "/mateuszwende/geolocation-react-ts/static/js/2.2405d5b4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.94a3647a.js",
+    "static/css/2.b4a16772.chunk.css",
+    "static/js/2.2405d5b4.chunk.js",
+    "static/css/main.48f2b0f7.chunk.css",
+    "static/js/main.ff54670f.chunk.js"
+  ]
+}
