@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import ReactMapGL, { ViewportProps } from "react-map-gl";
 import { GeoDataT } from "../state/geoLocation/types";
-import { Pins } from "../components/Pins";
+import { Pins } from "../components";
 
 type PropsT = {
   data: GeoDataT[];

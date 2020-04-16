@@ -1,41 +1,31 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import "./App.css";
-import {
-  GeoLocationActions,
-  GeoLocationErrorMessages,
-  GeoDataT,
-} from "./state/geoLocation/types";
+import { Container, Typography } from "@material-ui/core";
 import MapContainer from "./containers/MapContainer";
+import { ErrorDialog, DataInfo } from "./components";
+import { withGeolocationAvailable, withOnlyMobileAndTablet } from "./hoc";
+import { GeoLocationActions } from "./state/geoLocation/types";
+import {
+  createDataForPins,
+  getCurrentPosition,
+} from "./state/geoLocation/operations";
 import {
   geoLocationReducer,
   initialGeoLocationState,
 } from "./state/geoLocation/reducer";
-import {
-  Switch,
-  FormGroup,
-  FormControlLabel,
-  Container,
-  Typography,
-  Button,
-} from "@material-ui/core";
-import withGeolocationAvailable from "./hoc/withGeolocationAvailable";
-import withOnlyMobileAndTablet from "./hoc/withOnlyMobileAndTablet";
 import { useInterval } from "./hooks/useInterval";
-import DataView from "./components/DataView";
-import ErrorDialog from "./components/ErrorDialog";
 
 const App: React.FC = () => {
   const [geoLocation, dispatchGeoLocation] = useReducer(
     geoLocationReducer,
     initialGeoLocationState
   );
-  const [rawDataView, toggleRawDataView] = useState<boolean>(false);
 
   /**
    * Get position every <geoLocation.timeInterval> ms
    */
   useInterval(
-    getCurrentPosition,
+    () => getCurrentPosition(dispatchGeoLocation),
     geoLocation.isTracking ? geoLocation.timeInterval : null
   );
 
@@ -43,58 +33,8 @@ const App: React.FC = () => {
    * Start getting position as the app did mount
    */
   useEffect(() => {
-    getCurrentPosition();
+    getCurrentPosition(dispatchGeoLocation);
   }, []);
-
-  function getCurrentPosition() {
-    navigator.geolocation.getCurrentPosition(
-      onGeolocateSuccess,
-      onGeolocateError,
-      {
-        enableHighAccuracy: true,
-      }
-    );
-  }
-
-  function onGeolocateSuccess(position: Position) {
-    dispatchGeoLocation({
-      type: GeoLocationActions.ADD_LOCALIZATION,
-      payload: {
-        id: 0,
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-        measurementTime: new Date(position.timestamp),
-      },
-    });
-  }
-
-  function onGeolocateError(error: PositionError) {
-    dispatchGeoLocation({
-      type: GeoLocationActions.SET_ERROR,
-      payload: {
-        measurementTime: new Date(),
-        message: getGeolocateErrorMessage(error),
-      },
-    });
-  }
-
-  function getGeolocateErrorMessage(error: PositionError) {
-    if (error.code === error.PERMISSION_DENIED) {
-      return GeoLocationErrorMessages.PERMISSION_DENIED;
-    } else if (error.code === error.POSITION_UNAVAILABLE) {
-      return GeoLocationErrorMessages.POSITION_UNAVAILABLE;
-    }
-    return GeoLocationErrorMessages.DEFAULT;
-  }
-
-  function createDataForPins(data: GeoDataT[]) {
-    if (data.length > 1) {
-      return [data[0], data[data.length - 1]];
-    } else if (data.length === 1) {
-      return [data[0]];
-    }
-    return data;
-  }
 
   return (
     <Container>
@@ -111,55 +51,11 @@ const App: React.FC = () => {
             width="100%"
             height="500px"
           />
-          <FormGroup row className="vertical-spacing">
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={geoLocation.isTracking}
-                  onChange={() => {
-                    dispatchGeoLocation({
-                      type: GeoLocationActions.SET_IS_TRACKING,
-                      payload: !geoLocation.isTracking,
-                    });
-                  }}
-                  name="Geolocalization Availability"
-                  inputProps={{ "aria-label": "primary switch" }}
-                ></Switch>
-              }
-              label="On/Off track geolocation"
-            />
-          </FormGroup>
-          <DataView
-            title="Starting position"
-            titleColor="red"
-            latitude={geoLocation.data[0].latitude}
-            longitude={geoLocation.data[0].longitude}
-            measurementTime={geoLocation.data[0].measurementTime}
+          <DataInfo
+            data={geoLocation.data}
+            isTracking={geoLocation.isTracking}
+            dispatch={dispatchGeoLocation}
           />
-          <DataView
-            title="Current position"
-            titleColor="blue"
-            latitude={geoLocation.data[geoLocation.data.length - 1].latitude}
-            longitude={geoLocation.data[geoLocation.data.length - 1].longitude}
-            measurementTime={
-              geoLocation.data[geoLocation.data.length - 1].measurementTime
-            }
-          />
-          <Button
-            variant="outlined"
-            color="primary"
-            size="small"
-            onClick={() => toggleRawDataView(!rawDataView)}
-          >
-            {rawDataView ? <>Hide raw data</> : <>Show raw data</>}
-          </Button>
-          <div className="vertical-spacing">
-            {rawDataView ? (
-              <Typography style={{ overflowWrap: "break-word" }}>
-                {JSON.stringify(geoLocation.data)}
-              </Typography>
-            ) : null}
-          </div>
         </>
       ) : null}
       <ErrorDialog
